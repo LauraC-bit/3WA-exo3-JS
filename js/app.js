@@ -112,3 +112,6 @@ hideBtn.addEventListener("click", (event) => {
 //   counter = 0;
 // }
 
+// CONSIGNE FAIRE APPAITRE UNE DIV EN APPUYANT SUR UN BOUTON QUI VIENNENT DU BAS AVEC FOND NOIR COMME SUR MATERIALIZE -------------------------------------
+
+
