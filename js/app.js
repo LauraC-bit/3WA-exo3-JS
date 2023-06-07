@@ -36,10 +36,12 @@ Un deuxième bouton doit servir à masquer le modal.
 // CORRECTION
 
 const redBlock = document.querySelector(".red");
+const divUpContenuBlock = document.querySelector(".divUpContenu");
+const divUp = document.querySelector(".divUp");
 
 const clickBtn = document.getElementById("moveDiv");
 const hideBtn = document.getElementById("hideModal");
-
+const divUpBtn = document.getElementById("divUpBtn");
 const modal = document.querySelector(".modal");
 
 const zero = "0px";
@@ -62,6 +64,8 @@ clickBtn.addEventListener("click", (event) => {
   const isOnTopRight = isOnTop && isOnRight;
   const isOnBottomLeft = isOnBottom && isOnLeft;
   const isOnBottomRight = isOnBottom && isOnRight;
+
+
   
 
   if (isOnTopLeft) {
@@ -113,5 +117,48 @@ hideBtn.addEventListener("click", (event) => {
 // }
 
 // CONSIGNE FAIRE APPAITRE UNE DIV EN APPUYANT SUR UN BOUTON QUI VIENNENT DU BAS AVEC FOND NOIR COMME SUR MATERIALIZE -------------------------------------
+
+
+divUpBtn.addEventListener("click", (event) => {
+ 
+  divUpContenuBlock.style.top = "calc(100% - 200px)";
+  document.body.classList.add("modal-active")
+  divUpContenuBlock.style.transform = "scale(1)";
+
+  document.body.addEventListener("click", (event) => {
+  
+    const target = event.target;
+    const targetId = target.id;
+
+    if (targetId === divUpBtn.id || target.classList.contains("divUpContenu")) {
+      return;
+    }
+
+    if (divUpContenuBlock.style.transform === "scale(1)" || divUpContenuBlock.style.transform === "") {
+      divUpContenuBlock.style.transform = "scale(0)";
+      document.body.classList.remove("modal-active");
+      console.log("test")
+    }
+    
+})
+  
+});
+
+// -------------------------------
+
+const ScrollPageHeight = () => {
+  const beginScroll = document.documentElement.scrollTop;
+  const pageHeight =
+    document.documentElement.scrollHeight - window.innerHeight
+  console.dir(pageHeight)
+
+  const scrollResult = (beginScroll / pageHeight) * 100;
+  document.querySelector(".cursor").style.width = scrollResult + "%";
+};
+
+
+document.addEventListener("scroll", ScrollPageHeight);
+console.dir(document.body);
+
 
 
