@@ -145,6 +145,7 @@ divUpBtn.addEventListener("click", (event) => {
 });
 
 // -------------------------------
+// HSL COLOR PICKER
 
 const ScrollPageHeight = () => {
   const beginScroll = document.documentElement.scrollTop;
@@ -160,5 +161,18 @@ const ScrollPageHeight = () => {
 document.addEventListener("scroll", ScrollPageHeight);
 console.dir(document.body);
 
+// BARRE DE CHARGEMENT QUI CHANGE DE COULEUR EN FONCTION DU SCROLL
 
+window.document.addEventListener("scroll", (event) => {
+  ScrollPageHeight(event);
 
+  const beginScroll = document.documentElement.scrollTop;
+  const pageHeight =
+    document.documentElement.scrollHeight - window.innerHeight
+  
+  // 360 car la valeur max d'hsl est 360, a checker sur hsl color picker.
+
+  const colorResult = (beginScroll / pageHeight) * 360;
+  const hsl = `hsl(${colorResult}, 50%, 50%)`;
+  document.querySelector(".cursor").style.background = hsl;
+})
